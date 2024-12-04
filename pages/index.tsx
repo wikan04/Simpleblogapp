@@ -1,11 +1,13 @@
-// pages/index.tsx
 import BlogList from '../components/BlogList';
 import WelcomeDialog from '../components/WelcomeDialog';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Button } from 'antd';
+import { useRouter } from 'next/router';
 
 const queryClient = new QueryClient();
 
 export default function Home({ token }: { token: string | null }) {
+  const router = useRouter();
   return (
     <QueryClientProvider client={queryClient}>
       <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
@@ -16,13 +18,14 @@ export default function Home({ token }: { token: string | null }) {
             </span>
           </h2>
           <p className="text-base text-gray-700 md:text-lg">
-           Blog ini dibuat untuk kepentingan Test Interview
+            Blog ini dibuat untuk kepentingan Test Interview
           </p>
         </div>
 
         {token ? (
           <div className="w-full p-4">
             <BlogList token={token} /> {/* Meneruskan token ke BlogList */}
+            <Button className='mt-4' type="primary" onClick={() => router.push('/blog/create')}>Buat Postingan Baru</Button>
           </div>
         ) : (
           <WelcomeDialog onLogin={(newToken: string, name: string) => {
