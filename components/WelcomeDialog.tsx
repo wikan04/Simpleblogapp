@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, Form, Input, Button, message } from 'antd';
+import axios from 'axios';
 
 interface WelcomeDialogProps {
   onLogin: (token: string, name: string) => void;
@@ -8,16 +9,29 @@ interface WelcomeDialogProps {
 const WelcomeDialog: React.FC<WelcomeDialogProps> = ({ onLogin }) => {
   const [form] = Form.useForm();
 
-  const handleSubmit = () => {
-    form.validateFields()
-      .then(({ name, token }) => {
-        // Kirim data login
-        onLogin(token, name);
-        message.success(`Selamat Datang, ${name}!`);
-      })
-      .catch(() => {
-        message.error('Mohon Berikan Inputan yang Valid!');
+  const handleSubmit = async () => {
+    try {
+      const values = await form.validateFields();
+      const { name, token } = values;
+
+      // Cek validitas token dengan melakukan permintaan ke API
+      await axios.get('https://gorest.co.in/public/v2/posts', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
+
+      // Jika berhasil, panggil onLogin
+      onLogin(token, name);
+      message.success(`Selamat Datang, ${name}!`);
+    } catch (error) {
+      // Jika terjadi error, tampilkan pesan kesalahan
+      if (axios.isAxiosError(error) && error.response) {
+        message.error('Username atau GoRest Token Anda salah.');
+      } else {
+        message.error('Terjadi kesalahan, silakan coba lagi.');
+      }
+    }
   };
 
   return (
