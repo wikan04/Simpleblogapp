@@ -13,34 +13,35 @@ const WelcomeDialog: React.FC<WelcomeDialogProps> = ({ onLogin }) => {
       .then(({ name, token }) => {
         // Kirim data login
         onLogin(token, name);
-        message.success(`Welcome, ${name}!`);
+        message.success(`Selamat Datang, ${name}!`);
       })
       .catch(() => {
-        message.error('Please provide valid inputs.');
+        message.error('Mohon Berikan Inputan yang Valid!');
       });
   };
 
   return (
     <Modal
-      title="Welcome to Blog Post App"
+      title="Selamat datang di Wikan Simple Blog"
       open
       footer={null}
       closable={false}
     >
+      <p className='my-4'>Silahkan Login Terlebih Dahulu</p>
       <Form form={form} layout="vertical">
         <Form.Item
-          label="Your Name"
+          label="Username Gorest"
           name="name"
-          rules={[{ required: true, message: 'Name is required!' }]}
+          rules={[{ required: true, message: 'Username Wajib Diisi!' }]}
         >
-          <Input placeholder="Enter your name" />
+          <Input placeholder="Masukkan Username" />
         </Form.Item>
         <Form.Item
           label="GoRest Token"
           name="token"
-          rules={[{ required: true, message: 'Token is required!' }]}
+          rules={[{ required: true, message: 'GoRest Token Wajib Diisi!' }]}
         >
-          <Input.Password placeholder="Enter your GoRest token" />
+          <Input.Password placeholder="Masukkan token GoRest Anda" />
         </Form.Item>
         <Button type="primary" onClick={handleSubmit} block>
           Submit
