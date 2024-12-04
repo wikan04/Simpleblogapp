@@ -1,4 +1,3 @@
-// components/PostForm.tsx
 import React, { useEffect } from 'react';
 import { Form, Input, Button, Select, message } from 'antd';
 import { useRouter } from 'next/router';
@@ -6,12 +5,12 @@ import { useRouter } from 'next/router';
 interface PostFormProps {
     onSubmit: (values: any) => Promise<void>;
     initialValues?: { title: string; body: string; user_id: number };
-    users: any[]; // Tambahkan prop untuk daftar user
+    users: any[];
 }
 
 const PostForm: React.FC<PostFormProps> = ({ onSubmit, initialValues, users }) => {
     const [form] = Form.useForm();
-    const router = useRouter()
+    const router = useRouter();
 
     useEffect(() => {
         if (initialValues) {
@@ -33,7 +32,7 @@ const PostForm: React.FC<PostFormProps> = ({ onSubmit, initialValues, users }) =
         <Form form={form} onFinish={handleFinish}>
             <Form.Item
                 name="user_id"
-                rules={[{ required: true, message: 'User ID wajib dipilih!' }]}
+                rules={[{ required: true, message: 'User  ID wajib dipilih!' }]}
             >
                 <Select placeholder="Pilih User ID" allowClear>
                     {users.map(user => (
@@ -53,7 +52,11 @@ const PostForm: React.FC<PostFormProps> = ({ onSubmit, initialValues, users }) =
                 name="body"
                 rules={[{ required: true, message: 'Isi wajib diisi!' }]}
             >
-                <Input.TextArea placeholder="Isi" />
+                <Input.TextArea 
+                    placeholder="Isi" 
+                    showCount 
+                    maxLength={500} // Set batas maksimum karakter
+                />
             </Form.Item>
             <Form.Item>
                 <Button type="primary" htmlType="submit">
@@ -61,8 +64,8 @@ const PostForm: React.FC<PostFormProps> = ({ onSubmit, initialValues, users }) =
                 </Button>
 
                 <Button
-                    color="primary" variant="solid"
-                    onClick={() => { router.back() }}
+                    type="default"
+                    onClick={() => router.back()} // Kembali ke halaman sebelumnya
                     className='px-2 py-2 mx-5'
                 >
                     Kembali
