@@ -32,4 +32,5 @@ npm install
 npm run dev
 ```
 
-buka browser dan ketikkan [http://localhost:3000](http://localhost:3000) untuk mengaksesnya
+buka browser dan ketikkan [http://localhost:3000](http://localhost:3000) untuk mengaksesnya di lokal.
+apabila ingin mengakses secara live, silahkan kunjungi [https://wikansimpleblogapp-one.vercel.app/](https://wikansimpleblogapp-one.vercel.app/)
