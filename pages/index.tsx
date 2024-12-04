@@ -25,7 +25,7 @@ export default function Home({ token }: { token: string | null }) {
         {token ? (
           <div className="mx-auto">
             <BlogList token={token} /> {/* Meneruskan token ke BlogList */}
-            <Button className='mt-4' type="primary" onClick={() => router.push('/blog/create')}>Buat Postingan Baru</Button>
+            <Button className='px-4 md:px-24 lg:px-8' type="primary" onClick={() => router.push('/blog/create')}>Buat Postingan Baru</Button>
           </div>
         ) : (
           <WelcomeDialog onLogin={(newToken: string, name: string) => {

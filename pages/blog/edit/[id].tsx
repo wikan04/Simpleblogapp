@@ -67,12 +67,12 @@ const EditPost = () => {
     };
 
     if (!post) {
-        return <div>Loading...</div>; // Tampilkan loading saat data belum ada
+        return <div className='px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8'>Loading...</div>; // Tampilkan loading saat data belum ada
     }
 
     return (
-        <div className="p-6">
-            <h2>Edit Postingan</h2>
+        <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+            <h2 className='mb-5 text-xl font-bold leading-none tracking-tight text-gray-900'>Edit Postingan</h2>
             <PostForm onSubmit={handleSubmit} initialValues={post} users={users} /> {/* Pass initialValues dan users */}
         </div>
     );
