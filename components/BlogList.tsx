@@ -33,10 +33,10 @@ export default function BlogList({ token }: { token: string }) {
     });
 
     // Ambil daftar user_id yang unik
-    const uniqueUserIds = Array.from(new Set(blogs.map(blog => blog.user_id)));
+    const uniqueUserIds = Array.from(new Set(blogs.map((blog: Blog) => blog.user_id)));
 
     // Filter blogs berdasarkan search query dan user_id
-    const filteredBlogs = blogs.filter(blog => {
+    const filteredBlogs = blogs.filter((blog: Blog) => {
         const matchesSearch = blog.title.toLowerCase().includes(searchQuery.toLowerCase());
         const matchesUserId = selectedUserId ? blog.user_id === selectedUserId : true; // Filter berdasarkan user_id
         return matchesSearch && matchesUserId;
@@ -69,7 +69,7 @@ export default function BlogList({ token }: { token: string }) {
                     placeholder="Filter by User ID"
                     onChange={(value) => setSelectedUserId(value)}
                     style={{ width: 200 }}
-                    allowClear // Menambahkan opsi untuk menghapus filter
+                    allowClear
                 >
                     {uniqueUserIds.map(userId => (
                         <Select.Option key={userId} value={userId}>
@@ -81,7 +81,7 @@ export default function BlogList({ token }: { token: string }) {
 
             {/* Blog List */}
             <Row gutter={16}>
-                {paginatedBlogs.map((blog) => (
+                {paginatedBlogs.map((blog: Blog) => (
                     <Col span={8} key={blog.id}>
                         <Card
                             hoverable={true}

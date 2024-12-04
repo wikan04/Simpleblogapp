@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { Breadcrumb, Button, Modal, message } from 'antd';
 import { HomeOutlined } from '@ant-design/icons';
+import Link from 'next/link';
 
 const fetchBlogDetail = async (id: string, token: string) => {
     const response = await axios.get(`https://gorest.co.in/public/v2/posts/${id}`, {
@@ -57,7 +58,7 @@ const BlogDetail = () => {
                 {/* Breadcrumbs */}
                 <Breadcrumb separator=">" >
                     <Breadcrumb.Item>
-                        <a href="/"> <HomeOutlined /> Home</a>
+                        <Link href="/"> <HomeOutlined /> Home</Link>
                     </Breadcrumb.Item>
                     <Breadcrumb.Item>{blog.title}</Breadcrumb.Item>
                 </Breadcrumb>
