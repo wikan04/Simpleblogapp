@@ -58,7 +58,11 @@ const EditPost = () => {
             });
             router.push(`/blog/${id}`); // Redirect ke halaman detail post
         } catch (error) {
-            console.error('Error saat mengupdate data:', error.response.data); // Log error response
+            if (axios.isAxiosError(error) && error.response) {
+                console.error('Error saat mengupdate data:', error.response.data); // Log error response
+            } else {
+                console.error('Unexpected error:', error); // Log error yang tidak terduga
+            }
         }
     };
 

@@ -33,7 +33,7 @@ export default function BlogList({ token }: { token: string }) {
     });
 
     // Ambil daftar user_id yang unik
-    const uniqueUserIds = Array.from(new Set(blogs.map((blog: Blog) => blog.user_id)));
+    const uniqueUserIds: number[] = Array.from(new Set(blogs.map((blog: Blog) => blog.user_id)));
 
     // Filter blogs berdasarkan search query dan user_id
     const filteredBlogs = blogs.filter((blog: Blog) => {
@@ -67,7 +67,7 @@ export default function BlogList({ token }: { token: string }) {
                 />
                 <Select
                     placeholder="Filter by User ID"
-                    onChange={(value) => setSelectedUserId(value)}
+                    onChange={(value) => setSelectedUserId(value as number)}
                     style={{ width: 200 }}
                     allowClear
                 >

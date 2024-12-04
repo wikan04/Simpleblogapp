@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 
 const CreatePost = () => {
     const router = useRouter();
-    const [users, setUsers] = useState<any[]>([]); 
+    const [users, setUsers] = useState<any[]>([]);
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -39,7 +39,11 @@ const CreatePost = () => {
             });
             router.push(`/blog/${response.data.id}`);
         } catch (error) {
-            console.error('Error saat mengirim data:', error.response.data);
+            if (axios.isAxiosError(error) && error.response) {
+                console.error('Error saat mengirim data:', error.response.data);
+            } else {
+                console.error('Unexpected error:', error);
+            }
         }
     };
 
