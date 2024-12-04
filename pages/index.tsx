@@ -23,7 +23,7 @@ export default function Home({ token }: { token: string | null }) {
         </div>
 
         {token ? (
-          <div className="w-full p-4">
+          <div className="mx-auto">
             <BlogList token={token} /> {/* Meneruskan token ke BlogList */}
             <Button className='mt-4' type="primary" onClick={() => router.push('/blog/create')}>Buat Postingan Baru</Button>
           </div>
